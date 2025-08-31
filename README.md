@@ -609,11 +609,11 @@ console.log('Switched to English')
 
 ## 🤝 Contributing
 
-We welcome contributions! Please visit our [GitHub repository](https://github.com/narsinghtomar/date-core) for contribution guidelines.
+We welcome contributions! Please visit our [GitHub repository](https://github.com/solidkit/date-core) for contribution guidelines.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE file](https://github.com/narsinghtomar/date-core/blob/main/LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE file](https://github.com/solidkit/date-core/blob/main/LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
