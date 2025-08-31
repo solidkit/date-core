@@ -1,0 +1,66 @@
+{
+  "name": "date-core",
+  "version": "1.0.0-beta.3",
+  "type": "module",
+  "description": "Modern, lightweight date utilities library for React Native and web apps. Features comprehensive locale support with Arabic numerals, intelligent error handling, and production-ready logging. 93% smaller bundle size than heavy date libraries.",
+  "main": "lib/date-utils.js",
+  "module": "lib/date-utils.js",
+  "files": [
+    "lib/",
+    "demos/",
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "echo 'No build step needed - code is already in lib/'",
+    "prepublishOnly": "npm run build",
+    "demo": "node demos/basic-usage.js",
+    "demo:advanced": "node demos/advanced-usage.js",
+    "demo:multi-locale": "node demos/multi-locale-demo.js",
+    "demo:error-handling": "node demos/error-handling-demo.js",
+    "demo:app-init": "node demos/app-initialization-demo.js"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "locale",
+    "arabic",
+    "react-native",
+    "utilities",
+    "formatting",
+    "validation",
+    "internationalization",
+    "i18n",
+    "numerals",
+    "calendar",
+    "relative-time",
+    "date-manipulation",
+    "lightweight",
+    "performance",
+    "production-ready"
+  ],
+  "author": "Date Core Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-core/date-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/date-core/date-core/issues"
+  },
+  "homepage": "https://github.com/date-core/date-core#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.22.0",
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "jest": "^29.0.0"
+  }
+}
