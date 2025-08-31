@@ -2,7 +2,7 @@
 
 A modern, compact date utilities library designed for React Native and web applications. Features comprehensive locale support with Arabic numerals, intelligent error handling, and production-ready logging. Efficient alternative to heavy date libraries.
 
-[![npm version](https://img.shields.io/npm/v/date-core?color=blue&style=flat-square)](https://www.npmjs.com/package/date-core)
+[![npm version](https://img.shields.io/npm/v/date-core?style=for-the-badge&color=blue)](https://www.npmjs.com/package/date-core)
 [![bundle size](https://img.shields.io/bundlephobia/min/date-core)](https://bundlephobia.com/result?p=date-core)
 [![license](https://img.shields.io/npm/l/date-core.svg)](https://github.com/date-core/date-core/blob/main/LICENSE)
 [![downloads](https://img.shields.io/npm/dm/date-core.svg)](https://www.npmjs.com/package/date-core)
