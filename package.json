@@ -47,12 +47,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/date-core/date-core.git"
+    "url": "git+https://github.com/narsinghtomar/date-core.git"
   },
   "bugs": {
-    "url": "https://github.com/date-core/date-core/issues"
+    "url": "https://github.com/narsinghtomar/date-core/issues"
   },
-  "homepage": "https://github.com/date-core/date-core#readme",
+  "homepage": "https://github.com/narsinghtomar/date-core#readme",
   "engines": {
     "node": ">=14.0.0"
   },
