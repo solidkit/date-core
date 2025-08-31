@@ -1,6 +1,6 @@
 {
   "name": "date-core",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "type": "module",
   "description": "Modern, lightweight date utilities library for React Native and web apps. Features comprehensive locale support with Arabic numerals, intelligent error handling, and production-ready logging. 93% smaller bundle size than heavy date libraries.",
   "main": "lib/date-utils.js",
