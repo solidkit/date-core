@@ -12,6 +12,7 @@ A modern, compact date utilities library designed for React Native and web appli
 - [Overview](#-overview)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
+- [Web Application Support](#-web-application-support)
 - [Error Handling](#️-error-handling)
 - [Multi-Locale Support](#-multi-locale-support)
 - [API Reference](#-api-reference)
@@ -32,6 +33,7 @@ A modern, performant date utilities library that replaces heavy date libraries w
 - **🔢 Full Arabic locale support** - Arabic numerals and RTL support
 - **⚙️ Centralized locale management** - Single source of truth for app locale
 - **📱 Optimized for React Native** - Built specifically for mobile performance
+- **🌐 Web Application Ready** - Perfect for React, Vue, Angular, and vanilla JS
 - **🎯 Clean options object API** - Modern destructuring syntax for better DX
 - **🛡️ Comprehensive error handling** - Safe handling of invalid dates with fallbacks
 - **🚀 App initialization configuration** - Configure everything during app startup
@@ -77,6 +79,13 @@ const result = initializeApp({
 })
 
 console.log('App initialized:', result)
+// Console Output:
+// App initialized: {
+//   success: true,
+//   locale: 'ar',
+//   fallbackDate: Date object,
+//   errorConfig: { logErrors: true, ... }
+// }
 ```
 
 ### 2. Use Throughout Your App
@@ -101,7 +110,87 @@ const isTodayCheck = isToday(someDate) // true/false
 
 // Arabic locale example
 const arabicDate = formatDateLocalized(new Date(), { locale: 'ar' }) // "١٥ يناير ٢٠٢٤"
+
+// Smart formatting examples
+formatDateSmart(new Date()) // "Today" (if today)
+formatDateSmart(yesterday) // "Yesterday"
+formatDateSmart(tomorrow) // "Tomorrow"
+formatDateSmart(otherDate) // "15 January 2024" (if not today/yesterday/tomorrow)
+
+// Arabic smart formatting
+formatDateSmart(new Date(), { locale: 'ar' }) // "اليوم" (if today)
+formatDateSmart(yesterday, { locale: 'ar' }) // "أمس"
+formatDateSmart(tomorrow, { locale: 'ar' }) // "غداً"
 ```
+
+## 🌐 Web Application Support
+
+Perfect for React, Vue, Angular, and vanilla JavaScript applications:
+
+### **Quick Examples**
+
+#### **React.js**
+
+```jsx
+import { initializeApp, formatDateLocalized } from 'date-core'
+
+// Initialize
+initializeApp({ locale: 'en' })
+
+// Use in component
+function DateComponent() {
+  const date = new Date()
+  const locale = 'en'
+  return (
+    <div>
+      <p>Date: {formatDateLocalized(date)}</p>
+      <p>Locale: {locale}</p>
+    </div>
+    // Output: Date: 15 January 2024, Locale: en
+  )
+}
+```
+
+#### **Vue.js**
+
+```javascript
+// main.js
+import { initializeApp } from 'date-core'
+initializeApp({ locale: 'en' })
+
+// Component
+import { formatDateLocalized } from 'date-core'
+export default {
+  data() {
+    return { date: new Date(), locale: 'en' }
+  },
+  computed: {
+    formattedDate() {
+      return formatDateLocalized(this.date)
+      // Output: "15 January 2024"
+    },
+  },
+}
+```
+
+#### **Vanilla JavaScript**
+
+```javascript
+import { initializeApp, formatDateLocalized } from 'date-core'
+
+initializeApp({ locale: 'en' })
+const date = new Date()
+document.getElementById('date').textContent = formatDateLocalized(date)
+// Output: "15 January 2024"
+```
+
+### **Key Features for Web Apps**
+
+- ✅ **ES6 Modules** - Works with Webpack, Vite, Rollup
+- ✅ **Tree Shaking** - Only import what you need
+- ✅ **TypeScript Ready** - Full type definitions
+- ✅ **Framework Agnostic** - React, Vue, Angular, vanilla JS
+- ✅ **Performance Optimized** - Minimal overhead
 
 ## 🛡️ Error Handling
 
@@ -131,6 +220,8 @@ isValidDate('2024-12-25') // true
 
 // Get detailed validation info
 const info = getDateValidationInfo('invalid-date')
+console.log(info)
+// Console Output:
 // {
 //   isValid: false,
 //   error: 'Date results in NaN',
@@ -177,6 +268,12 @@ userInputs.forEach((input) => {
   const formatted = isValid ? formatDate(input) : 'Invalid input'
   console.log(`Input: "${input}" -> Valid: ${isValid}, Formatted: ${formatted}`)
 })
+
+// Console Output:
+// Input: "" -> Valid: false, Formatted: Invalid input
+// Input: "invalid" -> Valid: false, Formatted: Invalid input
+// Input: "2024-13-01" -> Valid: false, Formatted: Invalid input
+// Input: "2024-02-30" -> Valid: false, Formatted: Invalid input
 ```
 
 ## 🔇 Production-Ready Logging
@@ -206,27 +303,35 @@ configureLogger({
 })
 
 initializeApp({ locale: 'en' })
-```
-
-### **Benefits**
-
-- ✅ **Zero console spam** in production
-- ✅ **Helpful debugging** in development
-- ✅ **Automatic environment detection**
-- ✅ **Performance optimized**
-- ✅ **Fully configurable**
 
 // Scenario 3: Database date handling
-const dbDates = [null, '2024-12-25', 'invalid-date', '2024-02-29'];
-dbDates.forEach(dbDate => {
-const validation = getDateValidationInfo(dbDate);
-console.log(`DB Date: ${JSON.stringify(dbDate)}`);
-console.log(`  Valid: ${validation.isValid}`);
-console.log(`  Error: ${validation.error || 'None'}`);
-console.log(`  Safe Format: ${formatDate(dbDate)}`);
-});
+const dbDates = [null, '2024-12-25', 'invalid-date', '2024-02-29']
+dbDates.forEach((dbDate) => {
+  const validation = getDateValidationInfo(dbDate)
+  console.log(`DB Date: ${JSON.stringify(dbDate)}`)
+  console.log(`  Valid: ${validation.isValid}`)
+  console.log(`  Error: ${validation.error || 'None'}`)
+  console.log(`  Safe Format: ${formatDate(dbDate)}`)
+})
 
-````
+// Console Output:
+// DB Date: null
+//   Valid: false
+//   Error: Date cannot be null
+//   Safe Format: 15 January 2024
+// DB Date: "2024-12-25"
+//   Valid: true
+//   Error: None
+//   Safe Format: 25 December 2024
+// DB Date: "invalid-date"
+//   Valid: false
+//   Error: Date results in NaN
+//   Safe Format: 15 January 2024
+// DB Date: "2024-02-29"
+//   Valid: false
+//   Error: Invalid date (February 29, 2024 is not a leap year)
+//   Safe Format: 15 January 2024
+```
 
 ## 🌍 Multi-Locale Support
 
@@ -243,17 +348,40 @@ The package comes with 5 built-in locales:
 ### Dynamic Locale Registration
 
 ```javascript
-import {registerLocale, setLocale} from 'date-core';
-import {fr, es, de} from 'date-core';
+import { registerLocale, setLocale } from 'date-core'
+import { fr, es, de } from 'date-core'
 
 // Register additional locales
-registerLocale('fr', fr);
-registerLocale('es', es);
-registerLocale('de', de);
+registerLocale('fr', fr)
+registerLocale('es', es)
+registerLocale('de', de)
 
 // Switch to any registered locale
-setLocale('fr');
-````
+setLocale('fr')
+
+// Text view examples with different locales
+const date = new Date()
+
+// English
+<p>Date: {formatDateLocalized(date, { locale: 'en' })}</p>
+// Output: Date: 15 January 2024
+
+// Arabic
+<p>Date: {formatDateLocalized(date, { locale: 'ar' })}</p>
+// Output: Date: ١٥ يناير ٢٠٢٤
+
+// French
+<p>Date: {formatDateLocalized(date, { locale: 'fr' })}</p>
+// Output: Date: 15 janvier 2024
+
+// Spanish
+<Text>Date: {formatDateLocalized(date, { locale: 'es' })}</Text>
+// Output: Date: 15 de enero de 2024
+
+// German
+<Text>Date: {formatDateLocalized(date, { locale: 'de' })}</Text>
+// Output: Date: 15. Januar 2024
+```
 
 ### Custom Locale Files
 
@@ -413,21 +541,6 @@ const MultiLocaleDisplay = ({ date, locale }) => {
     </View>
   )
 }
-```
-
-### Property Listing with Error Handling
-
-```javascript
-const PropertyCard = ({ property }) => (
-  <View>
-    <Text>Added: {getRelativeTimeLocalized(property.createdAt)}</Text>
-    <Text>Updated: {formatDateSmart(property.updatedAt)}</Text>
-    <Text>
-      Full Date: {formatLongDate(property.createdAt, { format: 'LLLL' })}
-    </Text>
-    <Text>Day: {getDayName(property.createdAt, { format: 'long' })}</Text>
-  </View>
-)
 ```
 
 ## 📖 API Reference
